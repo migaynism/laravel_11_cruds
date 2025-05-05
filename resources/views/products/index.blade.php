@@ -63,4 +63,14 @@ product?');"><i class="bi bi-trash"></i> Delete</button>
  </div> 
 </div>
  
+<div style="display: flex; justify-content: flex-end; padding: 10px;">
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" style="padding: 8px 16px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Logout
+        </button>
+    </form>
+</div>
+
+
 @endsection
