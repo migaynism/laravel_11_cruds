@@ -18,7 +18,7 @@ btn-primary btn-sm">&larr; Back</a>
  </div>
  </div>
  <div class="card-body">
- <form action="{{ route('products.update', $product->id) }}" method="post">
+ <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
  @csrf
 @method("PUT")
  <div class="mb-3 row">
@@ -73,6 +73,19 @@ name="description">{{ $product->description }}</textarea>
  @enderror
  </div>
  </div>
+<div class="mb-3 row">
+    <label for="image" class="col-md-4 col-form-label text-md-end text-start">Product Image</label>
+    <div class="col-md-6">
+        @if($product->image)
+            <img src="{{ asset('storage/' . $product->image) }}" alt="Current Product Image" class="img-fluid rounded mb-3" style="max-height: 200px;">
+        @endif
+        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+        <small class="form-text text-muted">Only image file formats (jpg, jpeg, png, gif) are supported.</small>
+        @error('image')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+</div>
 <div class="mb-3 row">
  <input type="submit" class="col-md-3 offsetmd-5 btn btn-primary" value="Update">
  </div>
